@@ -1,0 +1,98 @@
+/* General Body Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Header Section */
+#local {
+    background-color: dimgray;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    font-size: 2rem;
+    margin: 0;
+    border-bottom: 2px solid orange;
+}
+
+/* World Time Table */
+#cities {
+    width: 90%;
+    margin: 30px auto;
+    border-collapse: collapse;
+    font-size: 1rem;
+    box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#cities th,
+#cities td {
+    padding: 12px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+/* Column Styling */
+#cities .col1 {
+    width: 10%;
+}
+
+#cities .col2 {
+    width: 40%;
+}
+
+#cities td img {
+    max-height: 30px;
+    max-width: 40px;
+    border-radius: 5px;
+}
+
+/* Zebra Striping for Table Rows */
+#cities tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+/* Hover Effect for Table Rows */
+#cities tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* Table Header */
+#cities th {
+    background-color: orangered;
+    color: white;
+    font-size: 1.2rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    #cities {
+        width: 100%;
+        font-size: 0.9rem;
+    }
+    
+    #local {
+        font-size: 1.5rem;
+    }
+
+    #cities .col1,
+    #cities .col2 {
+        width: 50%;
+    }
+}
+
+/* Small Devices / Mobile */
+@media (max-width: 480px) {
+    #local {
+        font-size: 1.3rem;
+    }
+
+    #cities td {
+        font-size: 0.8rem;
+        padding: 8px;
+    }
+}

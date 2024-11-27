@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>World Time</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="local">
+        <img src="img/South-Africa.png" alt="South Africa Flag" class="flag" />
+        Local time: Loading...
+    </div>
+
+    <div id="output"></div>
+
+    <script>
+        var timer = setInterval(displayWorldTime, 1000);
+
+        var cities = [
+            {name: "Paris", utcOffset: 1, flag: "France.png"},
+            {name: "London", utcOffset: 0, flag: "United-Kingdom.png"},
+            {name: "Berlin", utcOffset: 1, flag: "Germany.png"},
+            {name: "Mexico City", utcOffset: -6, flag: "Mexico.png"},
+            {name: "Tokyo", utcOffset: 9, flag: "japan.png"},
+            {name: "Buenos Aires", utcOffset: -3, flag: "Argentina.png"},
+            {name: "Dubai", utcOffset: 4, flag: "United-Arab-Emirates.png"},
+            {name: "Los Angeles", utcOffset: -8, flag: "United-States-of-America.png"}
+        ];
+
+        cities.sort(compare);
+
+        function compare(a, b) {
+            return a.name.localeCompare(b.name);
+        }
+
+        function getUtcTime() {
+            var dt = new Date();
+            var utcOffset = dt.getTimezoneOffset() * 60000;
+            var utcTime = new Date(dt.getTime() + utcOffset);
+            return utcTime.getTime();
+        }
+
+        function getCurrentTime(utcOffset) {
+            var mil = 1000 * 60 * 60;
+            var time = new Date(getUtcTime() + utcOffset * mil);
+            return time.toLocaleTimeString();
+        }
+
+        function displayWorldTime() {
+            var dt = new Date();
+            document.getElementById("local").innerHTML = "Local time : " + dt.toLocaleTimeString();
+
+            var output = `<table id="cities">
+                            <tr>
+                                <th class="col1"></th>
+                                <th class="col2">City</th>
+                                <th>Time</th>
+                            </tr>`;
+
+            for (let a = 0; a < cities.length; a++) {
+                output += `
+                    <tr>
+                        <td><img src="img/${cities[a].flag}" alt="${cities[a].name} flag" /></td>
+                        <td>${cities[a].name}</td>
+                        <td>${getCurrentTime(cities[a].utcOffset)}</td>
+                    </tr>
+                `;
+            }
+            output += `</table>`;
+            document.getElementById("output").innerHTML = output;
+        }
+    </script>
+</body>
+</html>
